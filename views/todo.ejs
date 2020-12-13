@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My todo-app</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <style>
+    #bg1{
+        background-color: #f44336;
+        color: white;
+        padding: 15px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+      }
+      #bg3{
+        background-color:grey;
+        color: white;
+        padding: 15px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+      }
+      #bg,button{
+        background-color:green;
+        color: white;
+        padding: 15px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .bg4{
+          width:1015px;
+          /* height:0; */
+      }
+    </style>
+</head>
+<body>
+    <center>
+     <h2>Todo App</h2>
+    </center>
+
+<div class="container mt5">
+    <form action="/add-todo" method="POST" class="d-flex">
+        <input type="text" name="task" class="form-control" placeholder="Enter Todo">
+        <input type="submit" value="Add Todo" class="btn btn-md btn-primary mx-2">
+    </form>
+  
+    <ul class="list-group cProductsList mt-5">
+    <%for(let i=0;i<todo.length;i++){%>
+        <%if(todo[i]._id==idTask) { %>
+            <li class="list-group-item d-flex justify-content-between">
+            <div class="container">
+            <form action="/edit/<%= todo[i]._id %>" method="POST" class="d-flex">
+            <input class="bg4" type="text" value="<%=todo[i].task%>" name="task">
+            <button type="submit">Confirm</button>
+            <a href="/" id="bg3" class="cancel">Cancel</a>
+            </form>
+            </div>
+            </li>
+        <%}else{%>
+        <li class="list-group-item d-flex justify-content-between"><p class="p-0 m-0 flex-grow-1"><%= todo[i].task %></p> 
+            <a id="bg" href="/edit/<%=todo[i]._id%>" class="btn-success">EDIT</a> <a id="bg1" href='/delete/<%=todo[i]._id%>'>DELETE</a>
+         </li>
+         <%}%>
+
+        <%}%>
+    </ul>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</div>
+
+</body>
+</html>
